@@ -20,7 +20,7 @@ import model.PsUsuarios;
 
 /**
  *
- * @author sistemas
+ * @author Juan Camilo Giron
  */
 public class PsTareasCalificadasJpaController implements Serializable {
 

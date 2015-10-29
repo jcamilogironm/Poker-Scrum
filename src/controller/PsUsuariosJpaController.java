@@ -22,7 +22,7 @@ import model.PsUsuarios;
 
 /**
  *
- * @author sistemas
+ * @author Juan Camilo Giron
  */
 public class PsUsuariosJpaController implements Serializable {
 

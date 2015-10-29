@@ -26,7 +26,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author sistemas
+ * @author Juan Camilo Giron
  */
 @Entity
 @Table(name = "ps_usuarios")

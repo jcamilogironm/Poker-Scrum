@@ -24,7 +24,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author sistemas
+ * @author Juan Camilo Giron
  */
 @Entity
 @Table(name = "ps_tareas_calificadas")

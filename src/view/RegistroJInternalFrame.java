@@ -5,12 +5,20 @@
  */
 package view;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Persistence;
+import model.PsUsuarios;
+
 /**
  *
  * @author Juan Camilo Giron
  */
 public class RegistroJInternalFrame extends javax.swing.JInternalFrame {
+
     private LoginJInternalFrame loginJInternalFrame;
+    public PsUsuarios usuarios;
     /**
      * Creates new form RegistroJInternalFrame
      */
@@ -18,13 +26,43 @@ public class RegistroJInternalFrame extends javax.swing.JInternalFrame {
         initComponents();
     }
     
-    private void getViewLogin(){
-    loginJInternalFrame=new LoginJInternalFrame();
-    MDIApplication.desktopPane.add(loginJInternalFrame);
-    loginJInternalFrame.setVisible(true);
-    this.dispose();
-    
+    public void getRegistro() {
+//        
+//        EntityManagerFactory emf = Persistence.createEntityManagerFactory("Poker_ScrumPU");
+//        EntityManager em = emf.createEntityManager();
+//        EntityTransaction tx = em.getTransaction();
+        
+        usuarios = new PsUsuarios();
+        usuarios.setNombres(nombresTextField.getText());
+        usuarios.setApellidos(apellidosTextField.getText());
+        usuarios.setUsuario(usuarioTextField.getText());
+        usuarios.setPassword(passwordField.getText());
+        usuarios.setRol(rolComboBox.getSelectedItem().toString());
+        usuarios.setEmpresa(empresaTextField.getText());
+        System.out.println(usuarios.getRol());
+        
+//        tx.begin();
+//        try {
+//            em.persist(usuarios);
+//            tx.commit();
+//        } catch (Exception e) {
+//            tx.rollback();
+//        }
+//        
+//        em.close();
+//        emf.close();
+        
     }
+    
+    private void getViewLogin() {
+        loginJInternalFrame = new LoginJInternalFrame();
+        MDIApplication.desktopPane.add(loginJInternalFrame);
+        loginJInternalFrame.setVisible(true);
+        this.dispose();
+        
+    }
+    
+   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -41,14 +79,14 @@ public class RegistroJInternalFrame extends javax.swing.JInternalFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jPasswordField1 = new javax.swing.JPasswordField();
-        jComboBox1 = new javax.swing.JComboBox();
-        jTextField4 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        nombresTextField = new javax.swing.JTextField();
+        apellidosTextField = new javax.swing.JTextField();
+        usuarioTextField = new javax.swing.JTextField();
+        passwordField = new javax.swing.JPasswordField();
+        rolComboBox = new javax.swing.JComboBox();
+        empresaTextField = new javax.swing.JTextField();
+        guardarButton = new javax.swing.JButton();
+        salirButton = new javax.swing.JButton();
 
         jLabel1.setText("Nombres:");
 
@@ -62,19 +100,19 @@ public class RegistroJInternalFrame extends javax.swing.JInternalFrame {
 
         jLabel6.setText("Empresa:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "", "Scrum Master", "Desarrollador", "Product Owner" }));
+        rolComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "", "Scrum Master", "Desarrollador", "Product Owner" }));
 
-        jButton1.setText("Guardar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        guardarButton.setText("Guardar");
+        guardarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                guardarButtonActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Back");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        salirButton.setText("Back");
+        salirButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                salirButtonActionPerformed(evt);
             }
         });
 
@@ -93,20 +131,20 @@ public class RegistroJInternalFrame extends javax.swing.JInternalFrame {
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPasswordField1)
-                    .addComponent(jTextField3)
-                    .addComponent(jTextField2)
-                    .addComponent(jTextField1)
-                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextField4))
+                    .addComponent(passwordField)
+                    .addComponent(usuarioTextField)
+                    .addComponent(apellidosTextField)
+                    .addComponent(nombresTextField)
+                    .addComponent(rolComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(empresaTextField))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(50, 50, 50)
-                        .addComponent(jButton1)
+                        .addComponent(guardarButton)
                         .addContainerGap(63, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2)
+                        .addComponent(salirButton)
                         .addGap(44, 44, 44))))
         );
         layout.setVerticalGroup(
@@ -117,60 +155,62 @@ public class RegistroJInternalFrame extends javax.swing.JInternalFrame {
                         .addGap(25, 25, 25)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(nombresTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jButton2)))
+                        .addComponent(salirButton)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(apellidosTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(usuarioTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(rolComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(empresaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(guardarButton))
                 .addContainerGap(40, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       getViewLogin();
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void guardarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarButtonActionPerformed
         getViewLogin();
-    }//GEN-LAST:event_jButton2ActionPerformed
+        getRegistro();
+    }//GEN-LAST:event_guardarButtonActionPerformed
+
+    private void salirButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirButtonActionPerformed
+        getViewLogin();
+       
+    }//GEN-LAST:event_salirButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox jComboBox1;
+    private javax.swing.JTextField apellidosTextField;
+    private javax.swing.JTextField empresaTextField;
+    private javax.swing.JButton guardarButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField nombresTextField;
+    private javax.swing.JPasswordField passwordField;
+    private javax.swing.JComboBox rolComboBox;
+    private javax.swing.JButton salirButton;
+    private javax.swing.JTextField usuarioTextField;
     // End of variables declaration//GEN-END:variables
 }

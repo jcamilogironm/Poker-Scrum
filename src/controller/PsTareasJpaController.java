@@ -22,7 +22,7 @@ import model.PsTareas;
 
 /**
  *
- * @author sistemas
+ * @author Juan Camilo Giron
  */
 public class PsTareasJpaController implements Serializable {
 
