@@ -27,10 +27,10 @@ public class RegistroJInternalFrame extends javax.swing.JInternalFrame {
     }
     
     public void getRegistro() {
-//        
-//        EntityManagerFactory emf = Persistence.createEntityManagerFactory("Poker_ScrumPU");
-//        EntityManager em = emf.createEntityManager();
-//        EntityTransaction tx = em.getTransaction();
+        
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("Poker_ScrumPU");
+        EntityManager em = emf.createEntityManager();
+        EntityTransaction tx = em.getTransaction();
         
         usuarios = new PsUsuarios();
         usuarios.setNombres(nombresTextField.getText());
@@ -41,16 +41,16 @@ public class RegistroJInternalFrame extends javax.swing.JInternalFrame {
         usuarios.setEmpresa(empresaTextField.getText());
         System.out.println(usuarios.getRol());
         
-//        tx.begin();
-//        try {
-//            em.persist(usuarios);
-//            tx.commit();
-//        } catch (Exception e) {
-//            tx.rollback();
-//        }
-//        
-//        em.close();
-//        emf.close();
+        tx.begin();
+        try {
+            em.persist(usuarios);
+            tx.commit();
+        } catch (Exception e) {
+            tx.rollback();
+        }
+        
+        em.close();
+        emf.close();
         
     }
     
