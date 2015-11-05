@@ -13,7 +13,7 @@ import java.util.logging.Logger;
  *
  * @author Juan Camilo Giron
  */
-public class MainJInternalFrame extends javax.swing.JInternalFrame {
+public class MainJInternalFrame extends javax.swing.JInternalFrame implements InterfaceCRUD {
         private TareaJInternalFrame tareaJInternalFrame;
         private LoginJInternalFrame loginJInternalFrame;
     /**
@@ -356,4 +356,24 @@ public class MainJInternalFrame extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public Object save() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Object edit() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Object delete() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Object select() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

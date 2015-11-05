@@ -9,7 +9,7 @@ package view;
  *
  * @author Juan Camilo Giron
  */
-public class TareaJInternalFrame extends javax.swing.JInternalFrame {
+public class TareaJInternalFrame extends javax.swing.JInternalFrame implements InterfaceCRUD {
 
     /**
      * Creates new form TareaJInternalFrame
@@ -235,4 +235,24 @@ public class TareaJInternalFrame extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public Object save() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Object edit() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Object delete() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Object select() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

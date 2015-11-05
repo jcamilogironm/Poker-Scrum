@@ -5,7 +5,11 @@
  */
 package view;
 
+import controller.model.ControllerPsUsuarios;
 import java.beans.PropertyVetoException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.persistence.EntityManager;
@@ -18,8 +22,9 @@ import model.PsUsuarios;
  *
  * @author Juan Camilo Giron
  */
-public class RegistroJInternalFrame extends javax.swing.JInternalFrame {
-
+public class RegistroJInternalFrame extends javax.swing.JInternalFrame implements InterfaceCRUD {
+    ControllerPsUsuarios controllerPsUsuarios;
+    PsUsuarios psUsuarios;
     private LoginJInternalFrame loginJInternalFrame;
     public PsUsuarios usuarios;
     /**
@@ -29,33 +34,9 @@ public class RegistroJInternalFrame extends javax.swing.JInternalFrame {
         initComponents();
     }
     
-    public void getRegistro() {
-        
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("Poker_ScrumPU");
-        EntityManager em = emf.createEntityManager();
-        EntityTransaction tx = em.getTransaction();
-        
-        usuarios = new PsUsuarios();
-        usuarios.setNombres(nombresTextField.getText());
-        usuarios.setApellidos(apellidosTextField.getText());
-        usuarios.setUsuario(usuarioTextField.getText());
-        usuarios.setPassword(passwordField.getText());
-        usuarios.setRol(rolComboBox.getSelectedItem().toString());
-        usuarios.setEmpresa(empresaTextField.getText());
-        System.out.println(usuarios.getRol());
-        
-        tx.begin();
-        try {
-            em.persist(usuarios);
-            tx.commit();
-        } catch (Exception e) {
-            tx.rollback();
-        }
-        
-        em.close();
-        emf.close();
-        
-    }
+    
+    
+   
     
     private void getViewLogin() {
         loginJInternalFrame = new LoginJInternalFrame();
@@ -215,8 +196,8 @@ public class RegistroJInternalFrame extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void guardarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarButtonActionPerformed
-        getViewLogin();
-        getRegistro();
+       
+       
     }//GEN-LAST:event_guardarButtonActionPerformed
 
     private void salirButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirButtonActionPerformed
@@ -242,4 +223,36 @@ public class RegistroJInternalFrame extends javax.swing.JInternalFrame {
     private javax.swing.JButton salirButton;
     private javax.swing.JTextField usuarioTextField;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public Object save() {
+        
+        String[] argsUsuario=new String[8];
+        argsUsuario[0]=nombresTextField.getText();
+        argsUsuario[1]=apellidosTextField.getText();
+        argsUsuario[2]=usuarioTextField.getText();
+        argsUsuario[3]=passwordField.getText();
+        argsUsuario[4]=empresaTextField.getText();
+        argsUsuario[5]=rolComboBox.getSelectedItem().toString();
+        
+        psUsuarios=controllerPsUsuarios.crearUsuarios(argsUsuario);
+        
+        return null;
+        
+    }
+
+    @Override
+    public Object edit() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Object delete() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Object select() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
