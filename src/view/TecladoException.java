@@ -1,10 +1,10 @@
-package vista;
+package view;
 
 import javax.swing.JOptionPane;
 
 /**
  *
- * @author luis mendez
+ * @author Juan Camilo Giron
  */
 public class TecladoException {
 
