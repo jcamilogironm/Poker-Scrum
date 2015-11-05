@@ -7,7 +7,7 @@ package controller.model;
 
 /**
  *
- * @author sistemas
+ * @author Juan Camilo Giron
  */
 public class ControllerPsTareasCalificadas {
     
