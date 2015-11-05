@@ -5,26 +5,48 @@
  */
 package view;
 
+import java.awt.Toolkit;
+import java.beans.PropertyVetoException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Juan Camilo Giron
  */
-public class MDIApplication extends javax.swing.JFrame {
-   private LoginJInternalFrame loginJInternalFrame;
+public final class MDIApplication extends javax.swing.JFrame {
+
+    private LoginJInternalFrame loginJInternalFrame;
+
+    //Obtener el tancho de la pantalla para el jPanel que contiene los botones del crud 
+    Toolkit tk = Toolkit.getDefaultToolkit();
+    int xSize = ((int) tk.getScreenSize().getWidth());
+
     /**
      * Creates new form MDIApplication
      */
     public MDIApplication() {
         initComponents();
+        //Se Inicia el tamaño del MDI de acuerdo a la resolucion de la pantalla 
+        this.setExtendedState(MDIApplication.MAXIMIZED_BOTH);
+        jPanelTooblar.setSize(xSize, 50);
+        jPanelTooblar.setVisible(true);
         getViewLogin();
     }
-    
-    public void getViewLogin(){
-    
-   loginJInternalFrame=new LoginJInternalFrame();
-   desktopPane.add(loginJInternalFrame);
-   loginJInternalFrame.setVisible(true);
-    
+
+    public void getViewLogin() {
+
+        loginJInternalFrame = new LoginJInternalFrame();
+        desktopPane.add(loginJInternalFrame);
+        loginJInternalFrame.setVisible(true);
+
+        try {
+            loginJInternalFrame.setMaximum(true);
+            loginJInternalFrame.setLocation(0,50);
+
+        } catch (PropertyVetoException ex) {
+            Logger.getLogger(MDIApplication.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -37,10 +59,59 @@ public class MDIApplication extends javax.swing.JFrame {
     private void initComponents() {
 
         desktopPane = new javax.swing.JDesktopPane();
-        menuBar = new javax.swing.JMenuBar();
+        jPanelTooblar = new javax.swing.JPanel();
+        jToolBar1 = new javax.swing.JToolBar();
+        saveButton = new javax.swing.JButton();
+        editButton = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setJMenuBar(menuBar);
+
+        jToolBar1.setRollover(true);
+
+        saveButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Save-icon.png"))); // NOI18N
+        saveButton.setFocusable(false);
+        saveButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        saveButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(saveButton);
+
+        editButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Edit-icon.png"))); // NOI18N
+        editButton.setFocusable(false);
+        editButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        editButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(editButton);
+
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Delete-icon.png"))); // NOI18N
+        jButton3.setFocusable(false);
+        jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(jButton3);
+
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Search-icon.png"))); // NOI18N
+        jButton4.setFocusable(false);
+        jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(jButton4);
+
+        javax.swing.GroupLayout jPanelTooblarLayout = new javax.swing.GroupLayout(jPanelTooblar);
+        jPanelTooblar.setLayout(jPanelTooblarLayout);
+        jPanelTooblarLayout.setHorizontalGroup(
+            jPanelTooblarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+        );
+        jPanelTooblarLayout.setVerticalGroup(
+            jPanelTooblarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        desktopPane.add(jPanelTooblar);
+        jPanelTooblar.setBounds(0, 0, 400, 50);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -50,11 +121,15 @@ public class MDIApplication extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 298, Short.MAX_VALUE)
+            .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -93,7 +168,12 @@ public class MDIApplication extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JDesktopPane desktopPane;
-    private javax.swing.JMenuBar menuBar;
+    private javax.swing.JButton editButton;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JPanel jPanelTooblar;
+    private javax.swing.JToolBar jToolBar1;
+    private javax.swing.JButton saveButton;
     // End of variables declaration//GEN-END:variables
 
 }
