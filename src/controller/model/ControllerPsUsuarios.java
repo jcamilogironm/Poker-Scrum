@@ -13,8 +13,10 @@ import model.PsUsuarios;
  */
 public class ControllerPsUsuarios {
     
-    public PsUsuarios crearUsuarios(String[] argsUsuario){
+    ControllerFecha controllerFecha;
     
+    public PsUsuarios crearUsuarios(String[] argsUsuario){
+    controllerFecha=new ControllerFecha();
     PsUsuarios psUsuarios;
     
     psUsuarios=new PsUsuarios();
@@ -24,6 +26,8 @@ public class ControllerPsUsuarios {
     psUsuarios.setPassword(argsUsuario[3]);
     psUsuarios.setEmpresa(argsUsuario[4]);
     psUsuarios.setRol(argsUsuario[5]);
+    psUsuarios.setFechaCreacion(null);
+    psUsuarios.setFechaModificacion(null);
     
     return psUsuarios;
     
