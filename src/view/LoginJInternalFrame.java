@@ -14,43 +14,44 @@ import java.util.logging.Logger;
  * @author Juan Camilo Giron
  */
 public class LoginJInternalFrame extends javax.swing.JInternalFrame {
-      private MainJInternalFrame mainJInternalFrame;
-      private RegistroJInternalFrame registroJInternalFrame;
-      MDIApplication mDIApplication;
-  
+
+    MainJInternalFrame mainJInternalFrame;
+    RegistroJInternalFrame registroJInternalFrame;
+    MDIApplication mDIApplication;
+
     /**
      * Creates new form LoginJInternalFrame
      */
     public LoginJInternalFrame() {
         initComponents();
-     
+
     }
-    
-    private void getViewMainFrame(){
-        
-        mainJInternalFrame=new MainJInternalFrame();
+
+    public void getViewMainFrame() {
+
+        mainJInternalFrame = new MainJInternalFrame();
         MDIApplication.desktopPane.add(mainJInternalFrame);
         mainJInternalFrame.setVisible(true);
         this.dispose();
-        
-         try {
+
+        try {
             mainJInternalFrame.setMaximum(true);
-           mainJInternalFrame.setLocation(0,50);
-        }  catch (PropertyVetoException ex) {
+            mainJInternalFrame.setLocation(0, 50);
+        } catch (PropertyVetoException ex) {
             Logger.getLogger(MDIApplication.class.getName()).log(Level.SEVERE, null, ex);
         }
-      
+
     }
-    
-    private void getViewRegistro(){
-         registroJInternalFrame=new RegistroJInternalFrame();
-         MDIApplication.desktopPane.add(registroJInternalFrame);
-         registroJInternalFrame.setVisible(true);
-         this.dispose();
-         
-          try {
+
+    public void getViewRegistro() {
+        registroJInternalFrame = new RegistroJInternalFrame();
+        MDIApplication.desktopPane.add(registroJInternalFrame);
+        registroJInternalFrame.setVisible(true);
+        this.dispose();
+
+        try {
             registroJInternalFrame.setMaximum(true);
-            registroJInternalFrame.setLocation(0,50);
+            registroJInternalFrame.setLocation(0, 50);
 
         } catch (PropertyVetoException ex) {
             Logger.getLogger(MDIApplication.class.getName()).log(Level.SEVERE, null, ex);
@@ -167,13 +168,13 @@ public class LoginJInternalFrame extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-      getViewRegistro();
-       
+        getViewRegistro();
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         getViewMainFrame();
-        
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
 

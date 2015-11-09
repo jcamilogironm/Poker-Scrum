@@ -70,12 +70,11 @@
                       <Component id="passwordField" max="32767" attributes="0"/>
                       <Component id="nombresTextField" alignment="0" max="32767" attributes="0"/>
                       <Component id="apellidosTextField" alignment="1" max="32767" attributes="0"/>
-                      <Component id="rolComboBox" max="32767" attributes="0"/>
+                      <Component id="rolComboBox" pref="368" max="32767" attributes="0"/>
                       <Component id="empresaTextField" alignment="0" max="32767" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="salirButton" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="242" max="32767" attributes="0"/>
-                          <Component id="guardarButton" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -116,10 +115,7 @@
                       <Component id="empresaTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="47" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="salirButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="guardarButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="salirButton" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -177,14 +173,6 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="empresaTextField">
-        </Component>
-        <Component class="javax.swing.JButton" name="guardarButton">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Guardar"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="guardarButtonActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="salirButton">
           <Properties>

@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import model.PsTareas;
 import model.PsUsuarios;
 
@@ -26,8 +27,8 @@ import model.PsUsuarios;
  */
 public class PsUsuariosJpaController implements Serializable {
 
-    public PsUsuariosJpaController(EntityManagerFactory emf) {
-        this.emf = emf;
+    public PsUsuariosJpaController() {
+       emf = Persistence.createEntityManagerFactory("Poker_ScrumPU");
     }
     private EntityManagerFactory emf = null;
 

@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import model.PsTareas;
 
 /**
@@ -26,8 +27,8 @@ import model.PsTareas;
  */
 public class PsTareasJpaController implements Serializable {
 
-    public PsTareasJpaController(EntityManagerFactory emf) {
-        this.emf = emf;
+    public PsTareasJpaController() {
+        emf = Persistence.createEntityManagerFactory("Poker_ScrumPU");
     }
     private EntityManagerFactory emf = null;
 

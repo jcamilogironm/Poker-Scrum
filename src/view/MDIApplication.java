@@ -5,10 +5,15 @@
  */
 package view;
 
+import controller.PsTareasCalificadasJpaController;
+import controller.PsTareasJpaController;
+import controller.PsUsuariosJpaController;
 import java.awt.Toolkit;
 import java.beans.PropertyVetoException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import model.PsUsuarios;
 
 /**
  *
@@ -16,7 +21,16 @@ import java.util.logging.Logger;
  */
 public final class MDIApplication extends javax.swing.JFrame {
 
-    private LoginJInternalFrame loginJInternalFrame;
+    //Declarando JinternalFrames
+    LoginJInternalFrame loginJInternalFrame;
+    MainJInternalFrame mainJInternalFrame;
+    RegistroJInternalFrame registroJInternalFrame;
+    TareaJInternalFrame tareaJInternalFrame;
+
+    //Declarando controladores Jpa
+    PsTareasJpaController ctrlPsTareas;
+    PsTareasCalificadasJpaController ctrlPsTareasCalificadas;
+    PsUsuariosJpaController ctrlUsuariosJpaController;
 
     //Obtener el tancho de la pantalla para el jPanel que contiene los botones del crud 
     Toolkit tk = Toolkit.getDefaultToolkit();
@@ -27,6 +41,11 @@ public final class MDIApplication extends javax.swing.JFrame {
      */
     public MDIApplication() {
         initComponents();
+        //Se einicializa los JpaController
+        ctrlPsTareas = new PsTareasJpaController();
+        ctrlPsTareasCalificadas = new PsTareasCalificadasJpaController();
+        ctrlUsuariosJpaController = new PsUsuariosJpaController();
+        
         //Se Inicia el tamaño del MDI de acuerdo a la resolucion de la pantalla 
         this.setExtendedState(MDIApplication.MAXIMIZED_BOTH);
         jPanelTooblar.setSize(xSize, 50);
@@ -42,7 +61,7 @@ public final class MDIApplication extends javax.swing.JFrame {
 
         try {
             loginJInternalFrame.setMaximum(true);
-            loginJInternalFrame.setLocation(0,50);
+            loginJInternalFrame.setLocation(0, 50);
 
         } catch (PropertyVetoException ex) {
             Logger.getLogger(MDIApplication.class.getName()).log(Level.SEVERE, null, ex);
@@ -74,6 +93,11 @@ public final class MDIApplication extends javax.swing.JFrame {
         saveButton.setFocusable(false);
         saveButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         saveButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        saveButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveButtonActionPerformed(evt);
+            }
+        });
         jToolBar1.add(saveButton);
 
         editButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Edit-icon.png"))); // NOI18N
@@ -130,6 +154,33 @@ public final class MDIApplication extends javax.swing.JFrame {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
+
+        Object object = null;
+
+        try {
+            object = interfaceCrear((InterfaceCRUD) desktopPane.getSelectedFrame());
+        } catch (NullPointerException e) {
+            System.out.println("NullpointerException+ Err" + object);
+        }
+
+        if (object != null) {
+            if (object instanceof PsUsuarios) {
+
+                PsUsuarios psUsuarios = (PsUsuarios) object;
+                ctrlUsuariosJpaController.create(psUsuarios);
+                            
+                JOptionPane.showMessageDialog(null, "El usuario ha sido creado satifactoriamente");
+                
+            }
+        }
+
+
+    }//GEN-LAST:event_saveButtonActionPerformed
+    public Object interfaceCrear(InterfaceCRUD interfaceCRUD) {
+        return interfaceCRUD.save();
+    }
 
     /**
      * @param args the command line arguments

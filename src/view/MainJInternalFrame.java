@@ -14,41 +14,43 @@ import java.util.logging.Logger;
  * @author Juan Camilo Giron
  */
 public class MainJInternalFrame extends javax.swing.JInternalFrame implements InterfaceCRUD {
-        private TareaJInternalFrame tareaJInternalFrame;
-        private LoginJInternalFrame loginJInternalFrame;
+
+    TareaJInternalFrame tareaJInternalFrame;
+    LoginJInternalFrame loginJInternalFrame;
+
     /**
      * Creates new form MainJInternalFrame
      */
     public MainJInternalFrame() {
         initComponents();
     }
-    
-    private void getViewTarea(){
-    
-        tareaJInternalFrame=new TareaJInternalFrame();
+
+    public void getViewTarea() {
+
+        tareaJInternalFrame = new TareaJInternalFrame();
         MDIApplication.desktopPane.add(tareaJInternalFrame);
         tareaJInternalFrame.setVisible(true);
-        
-         try {
+
+        try {
             tareaJInternalFrame.setMaximum(true);
-            tareaJInternalFrame.setLocation(0,50);
+            tareaJInternalFrame.setLocation(0, 50);
 
         } catch (PropertyVetoException ex) {
             Logger.getLogger(MDIApplication.class.getName()).log(Level.SEVERE, null, ex);
         }
-    
+
     }
-    
-    private void getViewLogin(){
-    
-    loginJInternalFrame=new LoginJInternalFrame();
-    MDIApplication.desktopPane.add(loginJInternalFrame);
-    loginJInternalFrame.setVisible(true);
-    this.dispose();
-    
-     try {
+
+    public void getViewLogin() {
+
+        loginJInternalFrame = new LoginJInternalFrame();
+        MDIApplication.desktopPane.add(loginJInternalFrame);
+        loginJInternalFrame.setVisible(true);
+        this.dispose();
+
+        try {
             loginJInternalFrame.setMaximum(true);
-            loginJInternalFrame.setLocation(0,0);
+            loginJInternalFrame.setLocation(0, 0);
 
         } catch (PropertyVetoException ex) {
             Logger.getLogger(MDIApplication.class.getName()).log(Level.SEVERE, null, ex);

@@ -16,18 +16,20 @@ import java.util.Date;
  */
 public class ControllerFecha {
 
-    private String fecha;
+    private Date fecha;
 
-    public String getFecha() {
-         Date date = new Date();
-        DateFormat fechaFormat = new SimpleDateFormat("dd/MM/yyyy");
-        fecha = fechaFormat.format(date);
-        return fecha;
+    public Date getFecha() {
+        Date date=new Date();  
+       fecha=date;
+       
+       return fecha;
     }
 
-    public void setFecha(String fecha) {
+    public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
+
+  
 
    
 

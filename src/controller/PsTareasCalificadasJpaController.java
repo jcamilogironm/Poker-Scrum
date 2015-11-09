@@ -12,6 +12,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
+import javax.persistence.Persistence;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import model.PsTareas;
@@ -24,8 +25,8 @@ import model.PsUsuarios;
  */
 public class PsTareasCalificadasJpaController implements Serializable {
 
-    public PsTareasCalificadasJpaController(EntityManagerFactory emf) {
-        this.emf = emf;
+    public PsTareasCalificadasJpaController() {
+        emf = Persistence.createEntityManagerFactory("Poker_ScrumPU");
     }
     private EntityManagerFactory emf = null;
 

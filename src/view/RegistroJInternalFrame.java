@@ -7,15 +7,8 @@ package view;
 
 import controller.model.ControllerPsUsuarios;
 import java.beans.PropertyVetoException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
 import model.PsUsuarios;
 
 /**
@@ -23,38 +16,44 @@ import model.PsUsuarios;
  * @author Juan Camilo Giron
  */
 public class RegistroJInternalFrame extends javax.swing.JInternalFrame implements InterfaceCRUD {
+
     ControllerPsUsuarios controllerPsUsuarios;
     PsUsuarios psUsuarios;
-    private LoginJInternalFrame loginJInternalFrame;
-    public PsUsuarios usuarios;
+    LoginJInternalFrame loginJInternalFrame;
+
     /**
      * Creates new form RegistroJInternalFrame
      */
     public RegistroJInternalFrame() {
         initComponents();
+        controllerPsUsuarios = new ControllerPsUsuarios();
     }
-    
-    
-    
-   
-    
-    private void getViewLogin() {
+
+    public void getViewLogin() {
         loginJInternalFrame = new LoginJInternalFrame();
         MDIApplication.desktopPane.add(loginJInternalFrame);
         loginJInternalFrame.setVisible(true);
         this.dispose();
-        
-         try {
+
+        try {
             loginJInternalFrame.setMaximum(true);
-            loginJInternalFrame.setLocation(0,0);
+            loginJInternalFrame.setLocation(0, 0);
 
         } catch (PropertyVetoException ex) {
             Logger.getLogger(MDIApplication.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
     
-   
+    
+    public void limpiarCampos(){
+    
+        nombresTextField.setText("");
+        apellidosTextField.setText("");
+        usuarioTextField.setText("");
+        passwordField.setText("");
+        empresaTextField.setText("");
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -78,7 +77,6 @@ public class RegistroJInternalFrame extends javax.swing.JInternalFrame implement
         rolComboBox = new javax.swing.JComboBox();
         jLabel6 = new javax.swing.JLabel();
         empresaTextField = new javax.swing.JTextField();
-        guardarButton = new javax.swing.JButton();
         salirButton = new javax.swing.JButton();
 
         setTitle("Registro");
@@ -98,13 +96,6 @@ public class RegistroJInternalFrame extends javax.swing.JInternalFrame implement
         rolComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "", "Scrum Master", "Desarrollador", "Product Owner" }));
 
         jLabel6.setText("Empresa:");
-
-        guardarButton.setText("Guardar");
-        guardarButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                guardarButtonActionPerformed(evt);
-            }
-        });
 
         salirButton.setText("Back");
         salirButton.addActionListener(new java.awt.event.ActionListener() {
@@ -133,12 +124,11 @@ public class RegistroJInternalFrame extends javax.swing.JInternalFrame implement
                     .addComponent(passwordField)
                     .addComponent(nombresTextField)
                     .addComponent(apellidosTextField, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(rolComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(rolComboBox, 0, 368, Short.MAX_VALUE)
                     .addComponent(empresaTextField)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(salirButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 242, Short.MAX_VALUE)
-                        .addComponent(guardarButton)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -169,9 +159,7 @@ public class RegistroJInternalFrame extends javax.swing.JInternalFrame implement
                     .addComponent(jLabel6)
                     .addComponent(empresaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(salirButton)
-                    .addComponent(guardarButton))
+                .addComponent(salirButton)
                 .addGap(23, 23, 23))
         );
 
@@ -195,21 +183,15 @@ public class RegistroJInternalFrame extends javax.swing.JInternalFrame implement
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void guardarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarButtonActionPerformed
-       
-       
-    }//GEN-LAST:event_guardarButtonActionPerformed
-
     private void salirButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirButtonActionPerformed
         getViewLogin();
-       
+
     }//GEN-LAST:event_salirButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField apellidosTextField;
     private javax.swing.JTextField empresaTextField;
-    private javax.swing.JButton guardarButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -226,19 +208,19 @@ public class RegistroJInternalFrame extends javax.swing.JInternalFrame implement
 
     @Override
     public Object save() {
-        
-        String[] argsUsuario=new String[8];
-        argsUsuario[0]=nombresTextField.getText();
-        argsUsuario[1]=apellidosTextField.getText();
-        argsUsuario[2]=usuarioTextField.getText();
-        argsUsuario[3]=passwordField.getText();
-        argsUsuario[4]=empresaTextField.getText();
-        argsUsuario[5]=rolComboBox.getSelectedItem().toString();
-        
-        psUsuarios=controllerPsUsuarios.crearUsuarios(argsUsuario);
-        
-        return null;
-        
+
+        String[] argsUsuario = new String[8];
+        argsUsuario[0] = nombresTextField.getText();
+        argsUsuario[1] = apellidosTextField.getText();
+        argsUsuario[2] = usuarioTextField.getText();
+        argsUsuario[3] = passwordField.getText();
+        argsUsuario[4] = empresaTextField.getText();
+        argsUsuario[5] = rolComboBox.getSelectedItem().toString();
+
+        psUsuarios = controllerPsUsuarios.crearUsuarios(argsUsuario);
+        limpiarCampos();
+        return psUsuarios;
+
     }
 
     @Override
