@@ -28,7 +28,7 @@ import model.PsUsuarios;
 public class PsUsuariosJpaController implements Serializable {
 
     public PsUsuariosJpaController() {
-       emf = Persistence.createEntityManagerFactory("Poker_ScrumPU");
+        emf = Persistence.createEntityManagerFactory("Poker_ScrumPU");
     }
     private EntityManagerFactory emf = null;
 
@@ -254,5 +254,17 @@ public class PsUsuariosJpaController implements Serializable {
             em.close();
         }
     }
-    
+
+    public void getUsuario(PsUsuarios psUsuarioLogin) {
+        EntityManager em = getEntityManager();
+        String jpql = "SELECT p FROM PsUsuarios p WHERE p.usuario = :usuario AND p.password = :password";
+        Query query = em.createQuery(jpql);
+        query.setParameter("usuario", psUsuarioLogin.getUsuario());
+        query.setParameter("password", psUsuarioLogin.getPassword());
+        List<PsUsuarios> resultados = query.getResultList();
+        for(PsUsuarios p : resultados) { 
+            System.out.println(""+p);
+        } 
+    }
+
 }

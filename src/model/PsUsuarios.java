@@ -41,8 +41,10 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "PsUsuarios.findByEmpresa", query = "SELECT p FROM PsUsuarios p WHERE p.empresa = :empresa"),
     @NamedQuery(name = "PsUsuarios.findByRol", query = "SELECT p FROM PsUsuarios p WHERE p.rol = :rol"),
     @NamedQuery(name = "PsUsuarios.findByFechaCreacion", query = "SELECT p FROM PsUsuarios p WHERE p.fechaCreacion = :fechaCreacion"),
-    @NamedQuery(name = "PsUsuarios.findByFechaModificacion", query = "SELECT p FROM PsUsuarios p WHERE p.fechaModificacion = :fechaModificacion")})
+    @NamedQuery(name = "PsUsuarios.findByFechaModificacion", query = "SELECT p FROM PsUsuarios p WHERE p.fechaModificacion = :fechaModificacion"),
+    @NamedQuery(name = "PsUsuarios.findByUsaurioPasswordEmpresa",query="SELECT p.usuario, p.password, p.empresa FROM PsUsuarios p WHERE p.usuario=:usuario AND p.password=:password AND p.empresa=:empresa")})
 public class PsUsuarios implements Serializable {
+    public static final String findLogin="PsUsuarios.findByUsuario";
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
