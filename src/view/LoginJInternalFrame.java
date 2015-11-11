@@ -185,7 +185,8 @@ public class LoginJInternalFrame extends javax.swing.JInternalFrame {
         argsLogin[2] = empresaTextField.getText();
                
         controllerPsUsuarios.loginUsuarios(argsLogin);
-       // ctrlUsuariosJpaController.getUsuario();
+      
+        
         getViewMainFrame();
 
     }//GEN-LAST:event_jButton1ActionPerformed

@@ -45,10 +45,10 @@ public class ControllerPsUsuarios {
         return null;
     }
 
-    public void loginUsuarios(String[] argsLogin) {
+    public PsUsuarios loginUsuarios(String[] argsLogin) {
 
         PsUsuarios psUsuariosLogin;
-        ctrlUsuariosJpaController=new PsUsuariosJpaController();
+        ctrlUsuariosJpaController = new PsUsuariosJpaController();
         if (!argsLogin[0].equals("") && !argsLogin[1].equals("") && !argsLogin[2].equals("")) {
 
             psUsuariosLogin = new PsUsuarios();
@@ -56,11 +56,17 @@ public class ControllerPsUsuarios {
             psUsuariosLogin.setPassword(argsLogin[1]);
             psUsuariosLogin.setEmpresa(argsLogin[2]);
             //System.out.println(""+psUsuariosLogin.getUsuario());
-           
+
             ctrlUsuariosJpaController.getUsuario(psUsuariosLogin);
+
+            return psUsuariosLogin;
         }
         JOptionPane.showMessageDialog(null, "Por favor completar todos los campos");
-       
+        return null;
+    }
+
+    public void validarUsuario() {
+
     }
 
 }

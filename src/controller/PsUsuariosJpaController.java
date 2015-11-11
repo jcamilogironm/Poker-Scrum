@@ -255,16 +255,31 @@ public class PsUsuariosJpaController implements Serializable {
         }
     }
 
-    public void getUsuario(PsUsuarios psUsuarioLogin) {
+    public String[] getUsuario(PsUsuarios psUsuarioLogin) {
         EntityManager em = getEntityManager();
-        String jpql = "SELECT p FROM PsUsuarios p WHERE p.usuario = :usuario AND p.password = :password";
+        String[] login = new String[3];
+        String jpql = "SELECT p FROM PsUsuarios p WHERE p.usuario = :usuario AND p.password = :password AND p.empresa =:empresa";
         Query query = em.createQuery(jpql);
         query.setParameter("usuario", psUsuarioLogin.getUsuario());
         query.setParameter("password", psUsuarioLogin.getPassword());
+        query.setParameter("empresa", psUsuarioLogin.getEmpresa());
         List<PsUsuarios> resultados = query.getResultList();
-        for(PsUsuarios p : resultados) { 
-            System.out.println(""+p);
-        } 
+        for (PsUsuarios p : resultados) {
+            login[0] = p.getUsuario();
+            login[1] = p.getPassword();
+            login[2] = p.getEmpresa();
+        }
+            System.out.println(""+login[0]+""+login[1]+""+login[2]);
+        return login;
     }
+//    public void getUsuario(PsUsuarios psUsuarioLogin) {
+//        EntityManager em = getEntityManager();
+//        Query query = em.createNamedQuery(PsUsuarios.findLogin);
+//        List<PsUsuarios> resultados = query.getResultList();
+//        for (PsUsuarios p : resultados) {
+//            System.out.println("" + p);
+//        }
+//
+//    }
 
 }
