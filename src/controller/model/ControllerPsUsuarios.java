@@ -6,7 +6,7 @@
 package controller.model;
 
 import controller.PsUsuariosJpaController;
-import java.util.Date;
+
 import javax.swing.JOptionPane;
 import model.PsUsuarios;
 
@@ -40,9 +40,11 @@ public class ControllerPsUsuarios {
             }
             JOptionPane.showMessageDialog(null, "La contraseña debe tener como minimo 5 caracteres");
 
-        }
+        }else{
         JOptionPane.showMessageDialog(null, "Por favor complete todos los campos");
         return null;
+        }
+       return null;
     }
 
     public PsUsuarios loginUsuarios(String[] argsLogin) {

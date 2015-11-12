@@ -269,7 +269,7 @@ public class PsUsuariosJpaController implements Serializable {
             login[1] = p.getPassword();
             login[2] = p.getEmpresa();
         }
-            System.out.println(""+login[0]+""+login[1]+""+login[2]);
+
         return login;
     }
 //    public void getUsuario(PsUsuarios psUsuarioLogin) {

@@ -12,6 +12,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import model.PsUsuarios;
+import org.apache.commons.codec.digest.DigestUtils;
 
 /**
  *
@@ -185,7 +186,7 @@ public class LoginJInternalFrame extends javax.swing.JInternalFrame {
         String[] login;
         Boolean acceso;
         argsLogin[0] = usuarioTextField.getText();
-        argsLogin[1] = passwordField.getText();
+        argsLogin[1] = DigestUtils.sha1Hex(passwordField.getText());
         argsLogin[2] = empresaTextField.getText();
 
         controllerPsUsuarios.loginUsuarios(argsLogin);
