@@ -10,7 +10,8 @@ import controller.model.ControllerPsUsuarios;
 import java.beans.PropertyVetoException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
+import javax.swing.JOptionPane;
+import model.PsUsuarios;
 
 /**
  *
@@ -23,13 +24,14 @@ public class LoginJInternalFrame extends javax.swing.JInternalFrame {
     MDIApplication mDIApplication;
     ControllerPsUsuarios controllerPsUsuarios;
     PsUsuariosJpaController ctrlUsuariosJpaController;
+
     /**
      * Creates new form LoginJInternalFrame
      */
     public LoginJInternalFrame() {
         initComponents();
         controllerPsUsuarios = new ControllerPsUsuarios();
-        ctrlUsuariosJpaController=new PsUsuariosJpaController();
+        ctrlUsuariosJpaController = new PsUsuariosJpaController();
     }
 
     public void getViewMainFrame() {
@@ -180,15 +182,24 @@ public class LoginJInternalFrame extends javax.swing.JInternalFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
         String[] argsLogin = new String[3];
+        String[] login;
+        Boolean acceso;
         argsLogin[0] = usuarioTextField.getText();
         argsLogin[1] = passwordField.getText();
         argsLogin[2] = empresaTextField.getText();
-               
-        controllerPsUsuarios.loginUsuarios(argsLogin);
-      
-        
-        getViewMainFrame();
 
+        controllerPsUsuarios.loginUsuarios(argsLogin);
+        PsUsuarios psUsuarios = controllerPsUsuarios.loginUsuarios(argsLogin);
+        ctrlUsuariosJpaController.getUsuario(psUsuarios);
+        login = ctrlUsuariosJpaController.getUsuario(psUsuarios);
+        controllerPsUsuarios.validarUsuario(login);
+        acceso = controllerPsUsuarios.validarUsuario(login);
+        if (acceso == true) {
+            getViewMainFrame();
+            JOptionPane.showMessageDialog(null,"Bienvenido Sr(a). "+argsLogin[0]);
+        } else {
+            JOptionPane.showMessageDialog(null, "Datos incorrectos");
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
 

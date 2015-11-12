@@ -255,14 +255,14 @@ public class PsUsuariosJpaController implements Serializable {
         }
     }
 
-    public String[] getUsuario(PsUsuarios psUsuarioLogin) {
+    public String[] getUsuario(PsUsuarios psUsuarios) {
         EntityManager em = getEntityManager();
         String[] login = new String[3];
         String jpql = "SELECT p FROM PsUsuarios p WHERE p.usuario = :usuario AND p.password = :password AND p.empresa =:empresa";
         Query query = em.createQuery(jpql);
-        query.setParameter("usuario", psUsuarioLogin.getUsuario());
-        query.setParameter("password", psUsuarioLogin.getPassword());
-        query.setParameter("empresa", psUsuarioLogin.getEmpresa());
+        query.setParameter("usuario", psUsuarios.getUsuario());
+        query.setParameter("password", psUsuarios.getPassword());
+        query.setParameter("empresa", psUsuarios.getEmpresa());
         List<PsUsuarios> resultados = query.getResultList();
         for (PsUsuarios p : resultados) {
             login[0] = p.getUsuario();
