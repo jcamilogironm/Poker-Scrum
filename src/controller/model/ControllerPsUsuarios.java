@@ -35,11 +35,11 @@ public class ControllerPsUsuarios {
                 psUsuarios.setRol(argsUsuario[5]);
                 psUsuarios.setFechaCreacion(controllerFecha.getFecha());
                 psUsuarios.setFechaModificacion(controllerFecha.getFecha());
-
+                
                 return psUsuarios;
             }
             JOptionPane.showMessageDialog(null, "La contraseña debe tener como minimo 5 caracteres");
-
+            
         }else{
         JOptionPane.showMessageDialog(null, "Por favor complete todos los campos");
         return null;

@@ -220,7 +220,10 @@ public class RegistroJInternalFrame extends javax.swing.JInternalFrame implement
         argsUsuario[5] = rolComboBox.getSelectedItem().toString();
 
         psUsuarios = controllerPsUsuarios.crearUsuarios(argsUsuario);
-        limpiarCampos();
+        if (psUsuarios!=null) {
+               limpiarCampos();
+        }
+     
         return psUsuarios;
 
     }

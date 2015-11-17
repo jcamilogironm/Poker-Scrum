@@ -264,11 +264,15 @@ public class PsUsuariosJpaController implements Serializable {
         query.setParameter("password", psUsuarios.getPassword());
         query.setParameter("empresa", psUsuarios.getEmpresa());
         List<PsUsuarios> resultados = query.getResultList();
-        for (PsUsuarios p : resultados) {
+        resultados.stream().map((p) -> {
             login[0] = p.getUsuario();
+            return p;
+        }).map((p) -> {
             login[1] = p.getPassword();
+            return p;
+        }).forEach((p) -> {
             login[2] = p.getEmpresa();
-        }
+        });
 
         return login;
     }

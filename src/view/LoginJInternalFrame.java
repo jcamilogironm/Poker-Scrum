@@ -188,19 +188,17 @@ public class LoginJInternalFrame extends javax.swing.JInternalFrame {
         argsLogin[0] = usuarioTextField.getText();
         argsLogin[1] = DigestUtils.sha1Hex(passwordField.getText());
         argsLogin[2] = empresaTextField.getText();
-
-        controllerPsUsuarios.loginUsuarios(argsLogin);
         PsUsuarios psUsuarios = controllerPsUsuarios.loginUsuarios(argsLogin);
-        ctrlUsuariosJpaController.getUsuario(psUsuarios);
-        login = ctrlUsuariosJpaController.getUsuario(psUsuarios);
-        controllerPsUsuarios.validarUsuario(login);
-        acceso = controllerPsUsuarios.validarUsuario(login);
-        if (acceso == true) {
-            getViewMainFrame();
-            JOptionPane.showMessageDialog(null,"Bienvenido Sr(a). "+argsLogin[0]);
-        } else {
-            JOptionPane.showMessageDialog(null, "Datos incorrectos");
+        if (psUsuarios != null) {
+            login = ctrlUsuariosJpaController.getUsuario(psUsuarios);
+            acceso = controllerPsUsuarios.validarUsuario(login);
+            if (acceso == true) {
+                getViewMainFrame();
+            } else {
+                JOptionPane.showMessageDialog(null, "Datos incorrectos");
+            }
         }
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
