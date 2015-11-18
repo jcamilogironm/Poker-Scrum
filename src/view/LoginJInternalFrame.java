@@ -82,7 +82,7 @@ public class LoginJInternalFrame extends javax.swing.JInternalFrame {
         passwordField = new javax.swing.JPasswordField();
         jLabel3 = new javax.swing.JLabel();
         empresaTextField = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        entrarButton = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
         setTitle("Login");
@@ -95,10 +95,10 @@ public class LoginJInternalFrame extends javax.swing.JInternalFrame {
 
         jLabel3.setText("Empresa:");
 
-        jButton1.setText("Entrar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        entrarButton.setText("Entrar");
+        entrarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                entrarButtonActionPerformed(evt);
             }
         });
 
@@ -128,7 +128,7 @@ public class LoginJInternalFrame extends javax.swing.JInternalFrame {
                             .addComponent(empresaTextField)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addContainerGap(146, Short.MAX_VALUE)
-                        .addComponent(jButton1)
+                        .addComponent(entrarButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton2)))
                 .addContainerGap())
@@ -150,7 +150,7 @@ public class LoginJInternalFrame extends javax.swing.JInternalFrame {
                     .addComponent(empresaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(entrarButton)
                     .addComponent(jButton2))
                 .addContainerGap(38, Short.MAX_VALUE))
         );
@@ -180,7 +180,7 @@ public class LoginJInternalFrame extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void entrarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_entrarButtonActionPerformed
 
         String[] argsLogin = new String[3];
         String[] login;
@@ -199,12 +199,12 @@ public class LoginJInternalFrame extends javax.swing.JInternalFrame {
             }
         }
 
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_entrarButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField empresaTextField;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton entrarButton;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
