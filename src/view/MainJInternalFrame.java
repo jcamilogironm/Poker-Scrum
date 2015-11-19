@@ -9,6 +9,7 @@ import java.beans.PropertyVetoException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+
 /**
  *
  * @author Juan Camilo Giron
@@ -17,12 +18,20 @@ public class MainJInternalFrame extends javax.swing.JInternalFrame implements In
 
     TareaJInternalFrame tareaJInternalFrame;
     LoginJInternalFrame loginJInternalFrame;
-
+    String recibe, rol;
     /**
      * Creates new form MainJInternalFrame
+     * @param login
      */
-    public MainJInternalFrame() {
+    public MainJInternalFrame(String[] login) {
         initComponents();
+        recibe=login[0];
+        usuarioLabel.setText(recibe);
+        rol=login[3];
+        if (rol.equals("Desarrollador")) {
+            tareaButton.setEnabled(false);
+        }
+
     }
 
     public void getViewTarea() {
@@ -72,7 +81,7 @@ public class MainJInternalFrame extends javax.swing.JInternalFrame implements In
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jButton13 = new javax.swing.JButton();
-        jButton11 = new javax.swing.JButton();
+        tareaButton = new javax.swing.JButton();
         ceroButton = new javax.swing.JButton();
         unoButton = new javax.swing.JButton();
         dosButton = new javax.swing.JButton();
@@ -89,7 +98,7 @@ public class MainJInternalFrame extends javax.swing.JInternalFrame implements In
         jLabel5 = new javax.swing.JLabel();
         calificacionLabel = new javax.swing.JLabel();
         jButton12 = new javax.swing.JButton();
-        jLabel7 = new javax.swing.JLabel();
+        usuarioLabel = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
@@ -112,10 +121,10 @@ public class MainJInternalFrame extends javax.swing.JInternalFrame implements In
             }
         });
 
-        jButton11.setText("Nueva Tarea");
-        jButton11.addActionListener(new java.awt.event.ActionListener() {
+        tareaButton.setText("Nueva Tarea");
+        tareaButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton11ActionPerformed(evt);
+                tareaButtonActionPerformed(evt);
             }
         });
 
@@ -222,7 +231,7 @@ public class MainJInternalFrame extends javax.swing.JInternalFrame implements In
             }
         });
 
-        jLabel7.setText("Usuario1");
+        usuarioLabel.setText("Usuario1");
 
         jLabel8.setText("Usuario 2");
 
@@ -254,7 +263,7 @@ public class MainJInternalFrame extends javax.swing.JInternalFrame implements In
                                 .addGap(96, 96, 96)
                                 .addComponent(jButton13)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton11))
+                                .addComponent(tareaButton))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(ceroButton)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -287,7 +296,7 @@ public class MainJInternalFrame extends javax.swing.JInternalFrame implements In
                                         .addGap(0, 0, Short.MAX_VALUE)))))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel7)
+                        .addComponent(usuarioLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -313,7 +322,7 @@ public class MainJInternalFrame extends javax.swing.JInternalFrame implements In
                             .addComponent(jLabel4)))
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jButton13)
-                        .addComponent(jButton11)))
+                        .addComponent(tareaButton)))
                 .addGap(27, 27, 27)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ceroButton)
@@ -337,7 +346,7 @@ public class MainJInternalFrame extends javax.swing.JInternalFrame implements In
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
+                    .addComponent(usuarioLabel)
                     .addComponent(jLabel8)
                     .addComponent(jLabel9)
                     .addComponent(jLabel10)
@@ -366,12 +375,14 @@ public class MainJInternalFrame extends javax.swing.JInternalFrame implements In
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-        // TODO add your handling code here:
+            
+
+// TODO add your handling code here:
     }//GEN-LAST:event_jButton12ActionPerformed
 
-    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+    private void tareaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tareaButtonActionPerformed
         getViewTarea();
-    }//GEN-LAST:event_jButton11ActionPerformed
+    }//GEN-LAST:event_tareaButtonActionPerformed
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
         getViewLogin();
@@ -386,11 +397,11 @@ public class MainJInternalFrame extends javax.swing.JInternalFrame implements In
     }//GEN-LAST:event_unoButtonActionPerformed
 
     private void dosButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dosButtonActionPerformed
-         calificacionLabel.setText("2");
+        calificacionLabel.setText("2");
     }//GEN-LAST:event_dosButtonActionPerformed
 
     private void tresButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tresButtonActionPerformed
-         calificacionLabel.setText("3");        // TODO add your handling code here:
+        calificacionLabel.setText("3");        // TODO add your handling code here:
     }//GEN-LAST:event_tresButtonActionPerformed
 
     private void cincoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cincoButtonActionPerformed
@@ -398,23 +409,23 @@ public class MainJInternalFrame extends javax.swing.JInternalFrame implements In
     }//GEN-LAST:event_cincoButtonActionPerformed
 
     private void seisButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seisButtonActionPerformed
-         calificacionLabel.setText("8");
+        calificacionLabel.setText("8");
     }//GEN-LAST:event_seisButtonActionPerformed
 
     private void treceButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_treceButtonActionPerformed
-         calificacionLabel.setText("13");
+        calificacionLabel.setText("13");
     }//GEN-LAST:event_treceButtonActionPerformed
 
     private void veinteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_veinteButtonActionPerformed
-        calificacionLabel.setText("20");        
+        calificacionLabel.setText("20");
     }//GEN-LAST:event_veinteButtonActionPerformed
 
     private void cuarentaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cuarentaButtonActionPerformed
-         calificacionLabel.setText("40");
+        calificacionLabel.setText("40");
     }//GEN-LAST:event_cuarentaButtonActionPerformed
 
     private void cienButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cienButtonActionPerformed
-         calificacionLabel.setText("100");
+        calificacionLabel.setText("100");
     }//GEN-LAST:event_cienButtonActionPerformed
 
 
@@ -425,7 +436,6 @@ public class MainJInternalFrame extends javax.swing.JInternalFrame implements In
     private javax.swing.JButton cincoButton;
     private javax.swing.JButton cuarentaButton;
     private javax.swing.JButton dosButton;
-    private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton13;
     private javax.swing.JLabel jLabel1;
@@ -435,7 +445,6 @@ public class MainJInternalFrame extends javax.swing.JInternalFrame implements In
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
@@ -443,9 +452,11 @@ public class MainJInternalFrame extends javax.swing.JInternalFrame implements In
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JButton seisButton;
+    private javax.swing.JButton tareaButton;
     private javax.swing.JButton treceButton;
     private javax.swing.JButton tresButton;
     private javax.swing.JButton unoButton;
+    private javax.swing.JLabel usuarioLabel;
     private javax.swing.JButton veinteButton;
     // End of variables declaration//GEN-END:variables
 

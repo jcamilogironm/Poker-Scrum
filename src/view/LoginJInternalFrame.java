@@ -35,9 +35,9 @@ public class LoginJInternalFrame extends javax.swing.JInternalFrame {
         ctrlUsuariosJpaController = new PsUsuariosJpaController();
     }
 
-    public void getViewMainFrame() {
+    public void getViewMainFrame(String[] login) {
 
-        mainJInternalFrame = new MainJInternalFrame();
+        mainJInternalFrame = new MainJInternalFrame(login);
         MDIApplication.desktopPane.add(mainJInternalFrame);
         mainJInternalFrame.setVisible(true);
         this.dispose();
@@ -193,7 +193,7 @@ public class LoginJInternalFrame extends javax.swing.JInternalFrame {
             login = ctrlUsuariosJpaController.getUsuario(psUsuarios);
             acceso = controllerPsUsuarios.validarUsuario(login);
             if (acceso == true) {
-                getViewMainFrame();
+                getViewMainFrame(login);
             } else {
                 JOptionPane.showMessageDialog(null, "Datos incorrectos");
             }
