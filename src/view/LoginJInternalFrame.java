@@ -24,7 +24,7 @@ public class LoginJInternalFrame extends javax.swing.JInternalFrame {
     RegistroJInternalFrame registroJInternalFrame;
     MDIApplication mDIApplication;
     ControllerPsUsuarios controllerPsUsuarios;
-    PsUsuariosJpaController ctrlUsuariosJpaController;
+    PsUsuarios usuario;
 
     /**
      * Creates new form LoginJInternalFrame
@@ -32,16 +32,15 @@ public class LoginJInternalFrame extends javax.swing.JInternalFrame {
     public LoginJInternalFrame() {
         initComponents();
         controllerPsUsuarios = new ControllerPsUsuarios();
-        ctrlUsuariosJpaController = new PsUsuariosJpaController();
+
     }
 
-    public void getViewMainFrame(String[] login) {
+    public void getViewMainFrame() {
 
-        mainJInternalFrame = new MainJInternalFrame(login);
+        mainJInternalFrame = new MainJInternalFrame();
         MDIApplication.desktopPane.add(mainJInternalFrame);
         mainJInternalFrame.setVisible(true);
         this.dispose();
-
         try {
             mainJInternalFrame.setMaximum(true);
             mainJInternalFrame.setLocation(0, 50);
@@ -64,6 +63,22 @@ public class LoginJInternalFrame extends javax.swing.JInternalFrame {
         } catch (PropertyVetoException ex) {
             Logger.getLogger(MDIApplication.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    public void getAcceso() {
+
+        String[] argsLogin = new String[3];
+
+        argsLogin[0] = usuarioTextField.getText();
+        argsLogin[1] = DigestUtils.sha1Hex(passwordField.getText());
+        argsLogin[2] = empresaTextField.getText();
+
+        usuario = controllerPsUsuarios.camposUsuarios(argsLogin);
+
+        if (controllerPsUsuarios.acceso(usuario) != false) {
+            getViewMainFrame();
+        }
+
     }
 
     /**
@@ -177,28 +192,10 @@ public class LoginJInternalFrame extends javax.swing.JInternalFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         getViewRegistro();
-
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void entrarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_entrarButtonActionPerformed
-
-        String[] argsLogin = new String[3];
-        String[] login;
-        Boolean acceso;
-        argsLogin[0] = usuarioTextField.getText();
-        argsLogin[1] = DigestUtils.sha1Hex(passwordField.getText());
-        argsLogin[2] = empresaTextField.getText();
-        PsUsuarios psUsuarios = controllerPsUsuarios.loginUsuarios(argsLogin);
-        if (psUsuarios != null) {
-            login = ctrlUsuariosJpaController.getUsuario(psUsuarios);
-            acceso = controllerPsUsuarios.validarUsuario(login);
-            if (acceso == true) {
-                getViewMainFrame(login);
-            } else {
-                JOptionPane.showMessageDialog(null, "Datos incorrectos");
-            }
-        }
-
+        getAcceso();
     }//GEN-LAST:event_entrarButtonActionPerformed
 
 

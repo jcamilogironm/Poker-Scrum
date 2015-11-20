@@ -8,6 +8,7 @@ package view;
 import java.beans.PropertyVetoException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.PsUsuarios;
 
 
 /**
@@ -18,24 +19,37 @@ public class MainJInternalFrame extends javax.swing.JInternalFrame implements In
 
     TareaJInternalFrame tareaJInternalFrame;
     LoginJInternalFrame loginJInternalFrame;
-    String recibe, rol;
+    PsUsuarios psUsuarios;
+  
     /**
      * Creates new form MainJInternalFrame
-     * @param login
+     
      */
-    public MainJInternalFrame(String[] login) {
+    public MainJInternalFrame() {
         initComponents();
-        recibe=login[0];
-        usuarioLabel.setText(recibe);
-        rol=login[3];
-        if (rol.equals("Desarrollador")) {
-            tareaButton.setEnabled(false);
-        }
+      
+//        sessionUsuario=new String[6];
+//       
+//        
+//        usuarioLabel.setText(login[4]+" "+login[5]);
+//        
+//        if (login[3].equals("Desarrollador")) {
+//            tareaButton.setEnabled(false);
+//        }
 
     }
+    
+    public void sessionUsuario(){
+    
+     
+    
+    }
+    
+    
+    
 
     public void getViewTarea() {
-
+      
         tareaJInternalFrame = new TareaJInternalFrame();
         MDIApplication.desktopPane.add(tareaJInternalFrame);
         tareaJInternalFrame.setVisible(true);
@@ -100,9 +114,6 @@ public class MainJInternalFrame extends javax.swing.JInternalFrame implements In
         jButton12 = new javax.swing.JButton();
         usuarioLabel = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
 
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -231,15 +242,7 @@ public class MainJInternalFrame extends javax.swing.JInternalFrame implements In
             }
         });
 
-        usuarioLabel.setText("Usuario1");
-
-        jLabel8.setText("Usuario 2");
-
-        jLabel9.setText("Usaurio 3");
-
-        jLabel10.setText("Usuario 4");
-
-        jLabel11.setText("Usuario5");
+        jLabel8.setText("Usuario:");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -296,15 +299,9 @@ public class MainJInternalFrame extends javax.swing.JInternalFrame implements In
                                         .addGap(0, 0, Short.MAX_VALUE)))))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(usuarioLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel10)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel11)
+                        .addComponent(usuarioLabel)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel2Layout.setVerticalGroup(
@@ -347,10 +344,7 @@ public class MainJInternalFrame extends javax.swing.JInternalFrame implements In
                 .addGap(27, 27, 27)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(usuarioLabel)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel9)
-                    .addComponent(jLabel10)
-                    .addComponent(jLabel11))
+                    .addComponent(jLabel8))
                 .addContainerGap(66, Short.MAX_VALUE))
         );
 
@@ -439,14 +433,11 @@ public class MainJInternalFrame extends javax.swing.JInternalFrame implements In
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton13;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;

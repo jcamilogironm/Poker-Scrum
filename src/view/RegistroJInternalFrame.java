@@ -215,7 +215,7 @@ public class RegistroJInternalFrame extends javax.swing.JInternalFrame implement
         argsUsuario[0] = nombresTextField.getText();
         argsUsuario[1] = apellidosTextField.getText();
         argsUsuario[2] = usuarioTextField.getText();
-        argsUsuario[3] = DigestUtils.sha1Hex(passwordField.getText());
+        argsUsuario[3] = passwordField.getText();
         argsUsuario[4] = empresaTextField.getText();
         argsUsuario[5] = rolComboBox.getSelectedItem().toString();
 

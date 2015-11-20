@@ -6,9 +6,12 @@
 package controller.model;
 
 import controller.PsUsuariosJpaController;
+import java.beans.PropertyVetoException;
 
 import javax.swing.JOptionPane;
 import model.PsUsuarios;
+import org.apache.commons.codec.digest.DigestUtils;
+import view.LoginJInternalFrame;
 
 /**
  *
@@ -30,37 +33,35 @@ public class ControllerPsUsuarios {
                 psUsuarios.setNombres(argsUsuario[0]);
                 psUsuarios.setApellidos(argsUsuario[1]);
                 psUsuarios.setUsuario(argsUsuario[2]);
-                psUsuarios.setPassword(argsUsuario[3]);
+                psUsuarios.setPassword(DigestUtils.sha1Hex(argsUsuario[3]));
                 psUsuarios.setEmpresa(argsUsuario[4]);
                 psUsuarios.setRol(argsUsuario[5]);
                 psUsuarios.setFechaCreacion(controllerFecha.getFecha());
                 psUsuarios.setFechaModificacion(controllerFecha.getFecha());
-                
+
                 return psUsuarios;
             }
             JOptionPane.showMessageDialog(null, "La contraseña debe tener como minimo 5 caracteres");
-            
-        }else{
-        JOptionPane.showMessageDialog(null, "Por favor complete todos los campos");
-        return null;
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Por favor complete todos los campos");
+            return null;
         }
-       return null;
+        return null;
     }
 
-    public PsUsuarios loginUsuarios(String[] argsLogin) {
-
+    public PsUsuarios camposUsuarios(String[] argsLogin) {
         PsUsuarios psUsuariosLogin;
-       // ctrlUsuariosJpaController = new PsUsuariosJpaController();
+        // ctrlUsuariosJpaController = new PsUsuariosJpaController();
         if (!argsLogin[0].equals("") && !argsLogin[1].equals("") && !argsLogin[2].equals("")) {
 
             psUsuariosLogin = new PsUsuarios();
             psUsuariosLogin.setUsuario(argsLogin[0]);
             psUsuariosLogin.setPassword(argsLogin[1]);
             psUsuariosLogin.setEmpresa(argsLogin[2]);
+
             //System.out.println(""+psUsuariosLogin.getUsuario());
-
-           //ctrlUsuariosJpaController.getUsuario(psUsuariosLogin);
-
+            //ctrlUsuariosJpaController.getUsuario(psUsuariosLogin);
             return psUsuariosLogin;
         }
         JOptionPane.showMessageDialog(null, "Por favor completar todos los campos");
@@ -68,7 +69,32 @@ public class ControllerPsUsuarios {
     }
 
     public Boolean validarUsuario(String[] login) {
-        return login[0]!=null;
+        return login[0] != null;
+    }
+
+    public Boolean acceso(PsUsuarios usuario) {
+        ctrlUsuariosJpaController = new PsUsuariosJpaController();
+
+        String[] sessionUsuario;
+        Boolean acceso;
+
+        if (usuario != null) {
+            sessionUsuario = ctrlUsuariosJpaController.getUsuario(usuario);
+            acceso = validarUsuario(sessionUsuario);
+            if (acceso == true) {
+                JOptionPane.showMessageDialog(null, "Bienvenido Sr(a). " + sessionUsuario[4] + " " + sessionUsuario[5]);
+                
+            } else {
+                JOptionPane.showMessageDialog(null, "Datos incorrectos");
+                return false;
+            }
+            
+        }else{
+        
+        return false;
+        }
+        
+        return true;
     }
 
 }

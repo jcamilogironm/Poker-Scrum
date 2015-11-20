@@ -13,11 +13,12 @@ public class TareaJInternalFrame extends javax.swing.JInternalFrame implements I
 
     /**
      * Creates new form TareaJInternalFrame
+    
      */
     public TareaJInternalFrame() {
         initComponents();
-        creadorTextField.setEnabled(false);
-        
+        creadorTextField.setEditable(false);
+       
     }
 
     /**
@@ -34,7 +35,7 @@ public class TareaJInternalFrame extends javax.swing.JInternalFrame implements I
         creadorTextField = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        asuntoTextArea = new javax.swing.JTextArea();
+        descripcionTextArea = new javax.swing.JTextArea();
         jLabel3 = new javax.swing.JLabel();
         minutosCTextField = new javax.swing.JTextField();
         segundosCTextField = new javax.swing.JTextField();
@@ -47,7 +48,6 @@ public class TareaJInternalFrame extends javax.swing.JInternalFrame implements I
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        guardarButton = new javax.swing.JButton();
         salirButton = new javax.swing.JButton();
 
         setTitle("Registrar Tarea");
@@ -56,11 +56,11 @@ public class TareaJInternalFrame extends javax.swing.JInternalFrame implements I
 
         jLabel1.setText("Creador:");
 
-        jLabel2.setText("Asunto:");
+        jLabel2.setText("Descripcion:");
 
-        asuntoTextArea.setColumns(20);
-        asuntoTextArea.setRows(5);
-        jScrollPane1.setViewportView(asuntoTextArea);
+        descripcionTextArea.setColumns(20);
+        descripcionTextArea.setRows(5);
+        jScrollPane1.setViewportView(descripcionTextArea);
 
         jLabel3.setText("Tiempo para calificar:");
 
@@ -90,14 +90,12 @@ public class TareaJInternalFrame extends javax.swing.JInternalFrame implements I
 
         jLabel5.setText(":");
 
-        guardarButton.setText("Guardar");
-        guardarButton.addActionListener(new java.awt.event.ActionListener() {
+        salirButton.setText("Cancelar");
+        salirButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                guardarButtonActionPerformed(evt);
+                salirButtonActionPerformed(evt);
             }
         });
-
-        salirButton.setText("Cancelar");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -116,7 +114,7 @@ public class TareaJInternalFrame extends javax.swing.JInternalFrame implements I
                             .addContainerGap()
                             .addComponent(jLabel3))))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(creadorTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -130,7 +128,7 @@ public class TareaJInternalFrame extends javax.swing.JInternalFrame implements I
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel8)
                             .addComponent(segundosCTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(10, 10, 10)
@@ -140,13 +138,13 @@ public class TareaJInternalFrame extends javax.swing.JInternalFrame implements I
                             .addComponent(minutosDTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(segundosDTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(segundosDTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel10)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(salirButton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(guardarButton))))
+                                .addComponent(salirButton))))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -182,7 +180,6 @@ public class TareaJInternalFrame extends javax.swing.JInternalFrame implements I
                     .addComponent(jLabel9)
                     .addComponent(jLabel10)
                     .addComponent(jLabel5)
-                    .addComponent(guardarButton)
                     .addComponent(salirButton))
                 .addContainerGap(40, Short.MAX_VALUE))
         );
@@ -207,11 +204,6 @@ public class TareaJInternalFrame extends javax.swing.JInternalFrame implements I
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void guardarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarButtonActionPerformed
-        this.dispose();
-
-    }//GEN-LAST:event_guardarButtonActionPerformed
-
     private void segundosCTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_segundosCTextFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_segundosCTextFieldActionPerformed
@@ -220,11 +212,14 @@ public class TareaJInternalFrame extends javax.swing.JInternalFrame implements I
         // TODO add your handling code here:
     }//GEN-LAST:event_segundosDTextFieldActionPerformed
 
+    private void salirButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirButtonActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_salirButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextArea asuntoTextArea;
     private javax.swing.JTextField creadorTextField;
-    private javax.swing.JButton guardarButton;
+    private javax.swing.JTextArea descripcionTextArea;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
