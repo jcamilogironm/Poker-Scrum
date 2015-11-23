@@ -6,21 +6,21 @@
 package controller.model;
 
 import controller.PsUsuariosJpaController;
-import java.beans.PropertyVetoException;
-
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import javax.swing.text.PlainDocument;
 import model.PsUsuarios;
 import org.apache.commons.codec.digest.DigestUtils;
-import view.LoginJInternalFrame;
 
 /**
  *
  * @author Juan Camilo Giron
  */
-public class ControllerPsUsuarios {
+public class ControllerPsUsuarios extends PlainDocument {
 
     ControllerFecha controllerFecha;
     PsUsuariosJpaController ctrlUsuariosJpaController;
+    String[] sessionUsuario;
 
     public PsUsuarios crearUsuarios(String[] argsUsuario) {
         controllerFecha = new ControllerFecha();
@@ -74,27 +74,42 @@ public class ControllerPsUsuarios {
 
     public Boolean acceso(PsUsuarios usuario) {
         ctrlUsuariosJpaController = new PsUsuariosJpaController();
-
-        String[] sessionUsuario;
         Boolean acceso;
 
         if (usuario != null) {
             sessionUsuario = ctrlUsuariosJpaController.getUsuario(usuario);
             acceso = validarUsuario(sessionUsuario);
             if (acceso == true) {
+
                 JOptionPane.showMessageDialog(null, "Bienvenido Sr(a). " + sessionUsuario[4] + " " + sessionUsuario[5]);
-                
+
             } else {
                 JOptionPane.showMessageDialog(null, "Datos incorrectos");
                 return false;
             }
-            
-        }else{
-        
-        return false;
+
+        } else {
+
+            return false;
         }
-        
+
         return true;
+    }
+
+    public PsUsuarios session() {
+        PsUsuarios psUsuariosSession = new PsUsuarios();
+        psUsuariosSession.setNumero(Integer.parseInt(sessionUsuario[6]));
+        psUsuariosSession.setUsuario(sessionUsuario[0]);
+        psUsuariosSession.setEmpresa(sessionUsuario[2]);
+        psUsuariosSession.setRol(sessionUsuario[3]);
+        psUsuariosSession.setNombres(sessionUsuario[4]);
+        psUsuariosSession.setApellidos(sessionUsuario[5]);
+
+        return psUsuariosSession;
+    }
+
+    public Boolean rol(PsUsuarios psUsuariosSession) {
+        return !psUsuariosSession.getRol().equals("Desarrollador");
     }
 
 }

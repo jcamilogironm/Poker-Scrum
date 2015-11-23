@@ -13,6 +13,7 @@ import java.beans.PropertyVetoException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import model.PsTareas;
 import model.PsUsuarios;
 
 /**
@@ -28,8 +29,8 @@ public final class MDIApplication extends javax.swing.JFrame {
     TareaJInternalFrame tareaJInternalFrame;
 
     //Declarando controladores Jpa
-    PsTareasJpaController ctrlPsTareas;
-    PsTareasCalificadasJpaController ctrlPsTareasCalificadas;
+    PsTareasJpaController ctrlPsTareasJpaController;
+    PsTareasCalificadasJpaController ctrlPsTareasCalificadasJpaController;
     PsUsuariosJpaController ctrlUsuariosJpaController;
 
     //Obtener el ancho de la pantalla para el jPanel que contiene los botones del crud 
@@ -42,8 +43,8 @@ public final class MDIApplication extends javax.swing.JFrame {
     public MDIApplication() {
         initComponents();
         //Se einicializa los JpaController
-        ctrlPsTareas = new PsTareasJpaController();
-        ctrlPsTareasCalificadas = new PsTareasCalificadasJpaController();
+        ctrlPsTareasJpaController = new PsTareasJpaController();
+        ctrlPsTareasCalificadasJpaController = new PsTareasCalificadasJpaController();
         ctrlUsuariosJpaController = new PsUsuariosJpaController();
         
         //Se Inicia el tamaño del MDI de acuerdo a la resolucion de la pantalla 
@@ -172,6 +173,13 @@ public final class MDIApplication extends javax.swing.JFrame {
                 ctrlUsuariosJpaController.create(psUsuarios);
                             
                 JOptionPane.showMessageDialog(null, "El usuario ha sido creado satifactoriamente");
+                
+            }else if (object instanceof PsTareas) {
+               
+                PsTareas psTareas=(PsTareas)object;
+                ctrlPsTareasJpaController.create(psTareas);
+                
+                JOptionPane.showMessageDialog(null, "La tarea ha sido creada satisfactoriamente");
                 
             }
         }

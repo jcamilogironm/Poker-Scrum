@@ -10,7 +10,6 @@ import java.beans.PropertyVetoException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.PsUsuarios;
-import org.apache.commons.codec.digest.DigestUtils;
 
 /**
  *

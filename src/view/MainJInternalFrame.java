@@ -5,11 +5,11 @@
  */
 package view;
 
+import controller.model.ControllerPsUsuarios;
 import java.beans.PropertyVetoException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.PsUsuarios;
-
 
 /**
  *
@@ -19,38 +19,27 @@ public class MainJInternalFrame extends javax.swing.JInternalFrame implements In
 
     TareaJInternalFrame tareaJInternalFrame;
     LoginJInternalFrame loginJInternalFrame;
-    PsUsuarios psUsuarios;
-  
+    ControllerPsUsuarios controllerPsUsuarios;
+    PsUsuarios sesionUsuario;
     /**
      * Creates new form MainJInternalFrame
-     
+     *
+     *
+     *
+     *
+     *
+     * @param sessionUsuarios
      */
-    public MainJInternalFrame() {
+    public MainJInternalFrame(PsUsuarios sessionUsuarios) {
         initComponents();
-      
-//        sessionUsuario=new String[6];
-//       
-//        
-//        usuarioLabel.setText(login[4]+" "+login[5]);
-//        
-//        if (login[3].equals("Desarrollador")) {
-//            tareaButton.setEnabled(false);
-//        }
-
+        controllerPsUsuarios = new ControllerPsUsuarios();
+        usuarioLabel.setText(sessionUsuarios.getUsuario());
+        tareaButton.setEnabled(controllerPsUsuarios.rol(sessionUsuarios));
+        sesionUsuario=sessionUsuarios;
     }
-    
-    public void sessionUsuario(){
-    
-     
-    
-    }
-    
-    
-    
+        public void getViewTarea() {
 
-    public void getViewTarea() {
-      
-        tareaJInternalFrame = new TareaJInternalFrame();
+        tareaJInternalFrame = new TareaJInternalFrame(sesionUsuario);
         MDIApplication.desktopPane.add(tareaJInternalFrame);
         tareaJInternalFrame.setVisible(true);
 
@@ -369,7 +358,6 @@ public class MainJInternalFrame extends javax.swing.JInternalFrame implements In
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-            
 
 // TODO add your handling code here:
     }//GEN-LAST:event_jButton12ActionPerformed

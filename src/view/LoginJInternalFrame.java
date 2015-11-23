@@ -5,12 +5,12 @@
  */
 package view;
 
-import controller.PsUsuariosJpaController;
+
 import controller.model.ControllerPsUsuarios;
 import java.beans.PropertyVetoException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
+
 import model.PsUsuarios;
 import org.apache.commons.codec.digest.DigestUtils;
 
@@ -35,9 +35,9 @@ public class LoginJInternalFrame extends javax.swing.JInternalFrame {
 
     }
 
-    public void getViewMainFrame() {
+    public void getViewMainFrame(PsUsuarios sessionUsuarios) {
 
-        mainJInternalFrame = new MainJInternalFrame();
+        mainJInternalFrame = new MainJInternalFrame(sessionUsuarios);
         MDIApplication.desktopPane.add(mainJInternalFrame);
         mainJInternalFrame.setVisible(true);
         this.dispose();
@@ -68,6 +68,7 @@ public class LoginJInternalFrame extends javax.swing.JInternalFrame {
     public void getAcceso() {
 
         String[] argsLogin = new String[3];
+        
 
         argsLogin[0] = usuarioTextField.getText();
         argsLogin[1] = DigestUtils.sha1Hex(passwordField.getText());
@@ -76,7 +77,8 @@ public class LoginJInternalFrame extends javax.swing.JInternalFrame {
         usuario = controllerPsUsuarios.camposUsuarios(argsLogin);
 
         if (controllerPsUsuarios.acceso(usuario) != false) {
-            getViewMainFrame();
+           
+            getViewMainFrame(controllerPsUsuarios.session());
         }
 
     }

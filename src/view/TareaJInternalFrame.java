@@ -5,20 +5,33 @@
  */
 package view;
 
+import controller.model.ControllerPsTareas;
+import javax.swing.JOptionPane;
+import model.PsTareas;
+import model.PsUsuarios;
+
 /**
  *
  * @author Juan Camilo Giron
  */
 public class TareaJInternalFrame extends javax.swing.JInternalFrame implements InterfaceCRUD {
 
+    ControllerPsTareas controllerPsTareas;
+    PsTareas psTareas;
+    PsUsuarios psUsuSesion;
+
     /**
      * Creates new form TareaJInternalFrame
-    
+     *
+     *
+     * @param usuariosSession
      */
-    public TareaJInternalFrame() {
+    public TareaJInternalFrame(PsUsuarios usuariosSession) {
         initComponents();
+        controllerPsTareas=new ControllerPsTareas();
+        creadorTextField.setText(usuariosSession.getNombres() + " " + usuariosSession.getApellidos());
         creadorTextField.setEditable(false);
-       
+        psUsuSesion=usuariosSession;
     }
 
     /**
@@ -241,7 +254,26 @@ public class TareaJInternalFrame extends javax.swing.JInternalFrame implements I
 
     @Override
     public Object save() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        String[] argsTareas = new String[6];
+
+        argsTareas[0] = creadorTextField.getText();
+        argsTareas[1] = descripcionTextArea.getText();
+        argsTareas[2] = minutosCTextField.getText();
+        argsTareas[3] = segundosCTextField.getText();
+        argsTareas[4] = minutosDTextField.getText();
+        argsTareas[5] = segundosDTextField.getText();
+
+        psTareas = controllerPsTareas.crearTarea(argsTareas, psUsuSesion);
+
+        if (psTareas!=null) {
+            JOptionPane.showMessageDialog(null, "Ojo no va nulo");
+            
+        }
+        
+        
+        return psTareas;
+
     }
 
     @Override
