@@ -41,10 +41,10 @@ public class ControllerPsTareas {
                         psTareas.setDescripcion(argsTareas[1]);
                         psTareas.setTempPuntuacion(argsTareas[2]+""+ argsTareas[3]);
                         psTareas.setTempDebate(argsTareas[4] + "" + argsTareas[5]);
-                       // psTareas.setTbUsuariosCodigo(psUsuariosfind);
+                        psTareas.setTbUsuariosCodigo(psUsuariosfind);
                         psTareas.setFechaApertura(controllerFecha.getFecha());
                         psTareas.setFechaModificacion(controllerFecha.getFecha());
-                       // psTareas.setCreador(psUsuariosfind.getNombres() + " " + psUsuariosfind.getApellidos());
+                        psTareas.setCreador(psUsuariosfind.getNombres() + " " + psUsuariosfind.getApellidos());
                         psTareas.setEstado(1);
                         psTareas.setPsTareasCalificadasList(null);
 
